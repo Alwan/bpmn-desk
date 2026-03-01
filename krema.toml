@@ -1,0 +1,41 @@
+[package]
+name = "bpmn-desk"
+version = "0.1.0"
+identifier = "app.bpmndesk"
+description = "A Krema desktop application"
+
+[window]
+title = "Bpmn Desk"
+width = 1024
+height = 768
+min_width = 800
+min_height = 600
+resizable = true
+
+[build]
+frontend_command = "npm run build"
+frontend_dev_command = "npm run dev"
+frontend_dev_url = "http://localhost:5173"
+out_dir = "dist"
+java_source_dir = "src-java"
+main_class = "app.bpmndesk.Main"
+
+[bundle]
+icon = "icons/icon.icns"
+identifier = "com.example.bpmndesk"
+
+[permissions]
+allow = [
+    "clipboard:read",
+    "clipboard:write",
+    "fs:read",
+    "fs:write",
+    "log:write"
+]
+
+# Environment overrides - uncomment and customize per profile
+# [env.development.window]
+# title = "bpmn-desk (Dev)"
+#
+# [env.production.updater]
+# check_on_startup = true
