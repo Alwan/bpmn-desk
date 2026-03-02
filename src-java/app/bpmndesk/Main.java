@@ -8,16 +8,20 @@ public class Main {
         boolean devMode = java.util.Arrays.asList(args).contains("--dev");
         String devUrl = System.getenv("KREMA_DEV_URL");
 
-        var app = Krema.app()
+        Object quitCmd;
+        Krema app = Krema.app()
                 .title("Bpmn Desk")
+                .commands(
+                        new QuitCmd()
+                )
                 .size(1024, 768);
 
         if (devMode && devUrl != null) {
             app.devUrl(devUrl);
             app.debug(true);
-
         }
 
         app.run();
     }
+    
 }
