@@ -12,6 +12,8 @@
     "vite": "^7.0.0"
   },
   "dependencies": {
-    "@kie-tools/kie-editors-standalone": "^10.1.0"
+    "@kie-tools/kie-editors-standalone": "^10.1.0",
+    "@lit-labs/router": "^0.1.4",
+    "lit": "^3.3.2"
   }
 }

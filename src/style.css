@@ -1,12 +1,9 @@
+html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: Arial, sans-serif;
-}
-
-#editor-container {
-  width: 100%;
-  height: calc(100vh - 32px);
 }
 
 #menubar {
@@ -16,6 +13,12 @@ body {
   background-color: #f0f0f0;
   border-bottom: 1px solid #ccc;
   user-select: none;
+}
+
+bpmn-editor {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 33px);
 }
 
 .menu-item {

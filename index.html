@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bpmn Desk</title>
-    <link rel="stylesheet" href="src/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bpmn Desk</title>
+  <link rel="stylesheet" href="src/style.css">
 </head>
-
-
 <body>
-
 <div id="menubar">
-    <div class="menu-item">
-        <button class="menu-button">File</button>
-        <div class="menu-dropdown">
-            <button id="menu-open-file">Open File</button>
-            <hr>
-            <button id="menu-quit">Quit</button>
-        </div>
+  <div class="menu-item">
+    <button class="menu-button">File</button>
+    <div class="menu-dropdown">
+      <button id="menu-open-file">Open File</button>
+      <hr>
+      <button id="menu-quit">Quit</button>
     </div>
-    <div class="menu-item">
-        <button class="menu-button">Help</button>
-        <div class="menu-dropdown">
-            <button id="menu-about">About</button>
-        </div>
+  </div>
+  <div class="menu-item">
+    <button class="menu-button">Help</button>
+    <div class="menu-dropdown">
+      <button id="menu-about">About</button>
     </div>
+  </div>
 </div>
 
-<div id="editor-container"></div>
-
+<bpmn-editor id="bpmn-editor"></bpmn-editor>
 
 <script src="node_modules/@kie-tools/kie-editors-standalone/dist/bpmn/index.js"></script>
-<script src="src/main.js"></script>
-
-
+<script type="module" src="src/main.js"></script>
 </body>
 </html>
