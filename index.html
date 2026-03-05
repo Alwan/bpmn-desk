@@ -7,23 +7,7 @@
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-<div id="menubar">
-  <div class="menu-item">
-    <button class="menu-button">File</button>
-    <div class="menu-dropdown">
-      <button id="menu-open-file">Open File</button>
-      <hr>
-      <button id="menu-quit">Quit</button>
-    </div>
-  </div>
-  <div class="menu-item">
-    <button class="menu-button">Help</button>
-    <div class="menu-dropdown">
-      <button id="menu-about">About</button>
-    </div>
-  </div>
-</div>
-
+<app-menubar id="menubar"></app-menubar>
 <bpmn-editor id="bpmn-editor"></bpmn-editor>
 
 <script src="node_modules/@kie-tools/kie-editors-standalone/dist/bpmn/index.js"></script>

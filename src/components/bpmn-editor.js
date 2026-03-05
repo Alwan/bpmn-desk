@@ -39,7 +39,7 @@ export class BpmnEditorComponent extends LitElement {
       return;
     }
 
-    const content = initialContent ?? (await this.getInitialContent());
+    const content = initialContent ?? (await this.getInitialContent()).content;
     this.#editorInstance = window.BpmnEditor.open({
       container,
       initialContent: Promise.resolve(content ?? ''),
@@ -63,8 +63,13 @@ export class BpmnEditorComponent extends LitElement {
   }
 
   async openFile(path) {
-    const fileContent = await window.krema.invoke('fs:readTextFile', {path});
+    const fileContent = await window.krema.invoke('readFile', {path});
     return this.loadContent(fileContent);
+  }
+
+  async saveFile(path) {
+    const content = await this.#editorInstance.getContent();
+    await window.krema.invoke('saveFile', {path, content});
   }
 }
 

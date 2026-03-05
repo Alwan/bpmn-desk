@@ -1,34 +1,10 @@
 import './components/bpmn-editor.js';
+import './components/menu-bar.js';
 
 const editorElement = document.getElementById('bpmn-editor');
+const menubarElement = document.getElementById('menubar');
 
-// Menubar logic
-document.querySelectorAll('.menu-item').forEach((item) => {
-  const button = item.querySelector('.menu-button');
-
-  button.addEventListener('click', (event) => {
-    event.stopPropagation();
-    const isOpen = item.classList.contains('open');
-    closeAllMenus();
-    if (!isOpen) {
-      item.classList.add('open');
-    }
-  });
-});
-
-document.addEventListener('click', () => {
-  closeAllMenus();
-});
-
-function closeAllMenus() {
-  document.querySelectorAll('.menu-item').forEach((item) => {
-    item.classList.remove('open');
-  });
-}
-
-// File > Open File
-document.getElementById('menu-open-file').addEventListener('click', async () => {
-  closeAllMenus();
+menubarElement?.addEventListener('open-file', async () => {
   try {
     const filePath = await window.krema.invoke('dialog:openFile', {
       title: 'Open BPMN File',
@@ -43,14 +19,10 @@ document.getElementById('menu-open-file').addEventListener('click', async () => 
   }
 });
 
-// File > Quit
-document.getElementById('menu-quit').addEventListener('click', () => {
-  closeAllMenus();
+menubarElement?.addEventListener('quit-app', () => {
   window.krema.invoke('quit');
 });
 
-// Help > About
-document.getElementById('menu-about').addEventListener('click', () => {
-  closeAllMenus();
+menubarElement?.addEventListener('show-about', () => {
   alert('Bpmn Desk v0.1.0\\nA BPMN editor desktop application.');
 });
