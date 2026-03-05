@@ -1,13 +1,11 @@
+let content = window.krema.invoke('createTempFile');
 
-let content = "";
 
-const main = BpmnEditor.open({
-    container: document.getElementById("editor-container"),
-    initialContent: Promise.resolve(
-        content
-    ),
-    readOnly: false,
-});
+    const main = BpmnEditor.open({
+        container: document.getElementById("editor-container"),
+        initialContent: content,
+        readOnly: false,
+    });
 
 // Menubar logic
 document.querySelectorAll(".menu-item").forEach((item) => {
@@ -39,10 +37,10 @@ document.getElementById("menu-open-file").addEventListener("click", async () => 
     try {
         const filePath = await window.krema.invoke("dialog:openFile", {
             title: "Open BPMN File",
-            filters: [{ name: "BPMN Files", extensions: ["bpmn", "bpmn2", "xml"] }],
+            filters: [{name: "BPMN Files", extensions: ["bpmn", "bpmn2", "xml"]}],
         });
         if (filePath) {
-            const fileContent = await window.krema.invoke("fs:readTextFile", { path: filePath });
+            const fileContent = await window.krema.invoke("fs:readTextFile", {path: filePath});
             if (fileContent) {
                 content = fileContent;
                 BpmnEditor.open({
@@ -61,7 +59,6 @@ document.getElementById("menu-open-file").addEventListener("click", async () => 
 document.getElementById("menu-quit").addEventListener("click", () => {
     closeAllMenus();
     window.krema.invoke("quit");
-    window.close();
 });
 
 // Help > About

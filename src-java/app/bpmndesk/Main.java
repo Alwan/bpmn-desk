@@ -12,7 +12,8 @@ public class Main {
         Krema app = Krema.app()
                 .title("Bpmn Desk")
                 .commands(
-                        new QuitCmd()
+                        new QuitCmd(),
+                        new FileOpsCmd()
                 )
                 .size(1024, 768);
 
