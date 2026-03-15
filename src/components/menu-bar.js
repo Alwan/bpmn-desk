@@ -72,6 +72,10 @@ export class MenuBarComponent extends LitElement {
     .menu-item.open .menu-dropdown {
       display: block;
     }
+
+    input[type="file"] {
+      display: none;
+    }
   `;
 
   #onDocumentClick = (event) => {
@@ -95,12 +99,23 @@ export class MenuBarComponent extends LitElement {
     super.disconnectedCallback();
   }
 
+  get fileInput() {
+    return this.renderRoot?.querySelector('#file-input');
+  }
+
   render() {
     return html`
+      <input
+        id="file-input"
+        type="file"
+        accept=".bpmn,.bpmn2,.xml"
+        @change=${this.#onFileInputChange}
+      >
       <div class="menu-item ${this.openMenu === 'file' ? 'open' : ''}">
         <button class="menu-button" @click=${(event) => this.toggleMenu(event, 'file')}>File</button>
         <div class="menu-dropdown">
           <button @click=${(event) => this.emitAction(event, 'open-file')}>Open File</button>
+          <button @click=${(event) => this.emitAction(event, 'save-file')}>Save</button>
           <hr>
           <button @click=${(event) => this.emitAction(event, 'quit-app')}>Quit</button>
         </div>
@@ -122,7 +137,26 @@ export class MenuBarComponent extends LitElement {
   emitAction(event, actionName) {
     event.stopPropagation();
     this.openMenu = '';
+    if (actionName === 'open-file') {
+      this.fileInput?.click();
+      return;
+    }
     this.dispatchEvent(new CustomEvent(actionName, {bubbles: true, composed: true}));
+
+
+
+  }
+
+  #onFileInputChange(event) {
+    const file = event.target.files?.[0];
+    if (file) {
+      this.dispatchEvent(new CustomEvent('open-file', {
+        bubbles: true,
+        composed: true,
+        detail: {file},
+      }));
+    }
+    event.target.value = '';
   }
 }
 

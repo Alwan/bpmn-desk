@@ -62,6 +62,11 @@ export class BpmnEditorComponent extends LitElement {
     return this.#editorInstance;
   }
 
+  async getContent() {
+    await this.updateComplete;
+    return this.#editorInstance?.getContent();
+  }
+
   async openFile(path) {
     const fileContent = await window.krema.invoke('readFile', {path});
     return this.loadContent(fileContent);
@@ -71,6 +76,11 @@ export class BpmnEditorComponent extends LitElement {
     const content = await this.#editorInstance.getContent();
     await window.krema.invoke('saveFile', {path, content});
   }
+
+  async setContent(content) {
+    await this.#editorInstance.setContent(content);
+  }
+
 }
 
 customElements.define('bpmn-editor', BpmnEditorComponent);
