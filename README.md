@@ -47,38 +47,6 @@ npm run dev      # Vite dev server on :5173 + Electron pointed at it
 | `npm run dist:win`   | NSIS installer (must run on Windows)            |
 | `npm run clean`      | Remove generated `dist/` and `release/`         |
 
-## Packaging desktop builds
-
-Installers are produced with [electron-builder](https://www.electron-builder.com/)
-(config in the `build` key of `package.json`, output in `release/`).
-
-> **Arch/CachyOS note:** the `deb` target uses a bundled Ruby (`fpm`) that
-> needs `libcrypt.so.1`, which Arch doesn't ship. The AppImage target works
-> fine locally; build the `.deb` in CI instead.
-
-### CI (GitHub Actions)
-
-`.github/workflows/build.yml` builds both platforms and attaches the
-artifacts to a GitHub Release:
-
-- Push a version tag to trigger a release build:
-
-  ```bash
-  git tag v1.0.1 && git push origin v1.0.1
-  ```
-
-- Or trigger it manually from the repo's **Actions → Build desktop apps →
-  Run workflow** (artifacts only, no Release).
-
-Linux targets are built on `ubuntu-latest`, Windows on `windows-latest`
-(the NSIS installer can only be produced on a Windows runner). Resulting
-files: `bpmn-desk-<version>.AppImage`, `bpmn-desk-<version>.deb`, and
-`bpmn-desk-Setup-<version>.exe`.
-
-Builds are unsigned — Windows SmartScreen may warn on first run;
-code-signing certificates can be wired into the workflow later via
-repository secrets.
-
 
 ## Trademarks
 
