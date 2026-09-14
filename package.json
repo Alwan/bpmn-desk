@@ -7,21 +7,58 @@
   "scripts": {
     "build": "vite build",
     "start": "npm run build && electron .",
-    "dev": "concurrently -k \"vite --port 5173\" \"wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\""
+    "dev": "concurrently -k \"vite --port 5173\" \"wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
+    "dist": "npm run build && electron-builder",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:win": "npm run build && electron-builder --win"
+  },
+  "build": {
+    "appId": "dev.alwan.bpmn-desk",
+    "productName": "bpmn-desk",
+    "files": [
+      "dist/**/*",
+      "src/main.js",
+      "src/preload.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "linux": {
+      "target": [
+        { "target": "AppImage", "arch": ["x64"] },
+        { "target": "deb", "arch": ["x64"] }
+      ],
+      "category": "Development",
+      "maintainer": "Alwan",
+      "synopsis": "Apache KIE BPMN editor desktop app"
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "license": "Apache-2.0",
   "devDependencies": {
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "electron": "^44.0.0",
+    "electron-builder": "^26.15.3",
     "vite": "^6.2.0",
     "wait-on": "^8.0.2"
   },
   "dependencies": {
-      "@kie-tools/bpmn-editor-standalone": "^10.2.0"
+    "@kie-tools/bpmn-editor-standalone": "^10.2.0"
   },
   "allowScripts": {
     "electron@33.4.11": true,
-    "esbuild@0.25.12": true
+    "esbuild@0.25.12": true,
+    "electron-winstaller": false
   }
 }
