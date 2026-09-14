@@ -19,6 +19,7 @@
       "dist/**/*",
       "src/main.js",
       "src/preload.js",
+      "build/icon.png",
       "package.json"
     ],
     "directories": {

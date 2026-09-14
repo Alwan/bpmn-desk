@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- App tile -->
+  <rect x="8" y="8" width="496" height="496" rx="96" fill="url(#bg)"/>
+  <rect x="8.5" y="8.5" width="495" height="495" rx="95.5" fill="none" stroke="#93c5fd" stroke-opacity="0.35" stroke-width="3"/>
+
+  <!-- BPMN flow: start event -> task -> gateway (optically centered) -->
+  <g stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(-10,0)">
+
+    <!-- start event (thin circle) -->
+    <circle cx="122" cy="256" r="46" stroke-width="14"/>
+
+    <!-- connector -->
+    <line x1="168" y1="256" x2="212" y2="256" stroke-width="14"/>
+
+    <!-- task (rounded rect) -->
+    <rect x="212" y="196" width="120" height="120" rx="22" stroke-width="14"/>
+
+    <!-- connector -->
+    <line x1="332" y1="256" x2="372" y2="256" stroke-width="14"/>
+
+    <!-- gateway (diamond) -->
+    <path d="M 372 256 L 414 214 L 456 256 L 414 298 Z" stroke-width="13" fill="#ffffff" fill-opacity="0.12"/>
+    <!-- plus marker floating free inside the diamond -->
+    <path d="M 414 238 L 414 274 M 396 256 L 432 256" stroke-width="10"/>
+  </g>
+
+  <!-- subtle process label lines inside the task -->
+  <g stroke="#bfdbfe" stroke-width="9" stroke-linecap="round" opacity="0.85" transform="translate(-10,0)">
+    <line x1="236" y1="232" x2="308" y2="232"/>
+    <line x1="236" y1="256" x2="290" y2="256"/>
+    <line x1="236" y1="280" x2="300" y2="280"/>
+  </g>
+</svg>
