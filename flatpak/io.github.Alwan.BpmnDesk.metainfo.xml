@@ -24,9 +24,9 @@
     </ul>
   </description>
   <launchable type="desktop-id">io.github.Alwan.BpmnDesk.desktop</launchable>
-  <url type="homepage">https://github.com/Alwan/bpmn-desk</url>
-  <url type="bugtracker">https://github.com/Alwan/bpmn-desk/issues</url>
-  <url type="vcs-browser">https://github.com/Alwan/bpmn-desk</url>
+  <url type="homepage">https://github.com/Alwan/BpmnDesk</url>
+  <url type="bugtracker">https://github.com/Alwan/BpmnDesk/issues</url>
+  <url type="vcs-browser">https://github.com/Alwan/BpmnDesk</url>
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/Alwan/bpmn-desk/v1.0.1/bpmn-desk.png</image>

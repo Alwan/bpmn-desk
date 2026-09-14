@@ -14,7 +14,7 @@
     "clean": "node -e \"['dist','release'].forEach(d=>require('fs').rmSync(d,{recursive:true,force:true}))\""
   },
   "build": {
-    "appId": "dev.alwan.bpmn-desk",
+    "appId": "io.github.Alwan.BpmnDesk",
     "productName": "bpmn-desk",
     "files": [
       "dist/**/*",
@@ -49,6 +49,7 @@
     }
   },
   "license": "Apache-2.0",
+  "author": "Alwan <alwan.sa@gmail.com>",
   "devDependencies": {
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",

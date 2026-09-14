@@ -15,8 +15,8 @@ finish-args:
   - --socket=wayland
   - --device=dri
   - --share=network
-  # A file editor needs to open/save .bpmn files anywhere in the user's home
-  - --filesystem=home
+  # Electron uses the xdg-desktop-portal file chooser in Flatpak, which grants
+  # per-file access — no broad filesystem permission needed
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --env=ELECTRON_OZONE_PLATFORM_HINT=auto
 modules:
@@ -34,7 +34,7 @@ modules:
       - npm run build
       # Package the unpacked app with electron-builder (dir target only;
       # Flatpak handles the final packaging)
-      - . flatpak-node/electron-builder-arch-args.sh; npx electron-builder --linux dir --publish never $ELECTRON_BUILDER_ARCH_ARGS
+      - . flatpak-node/electron-builder-arch-args.sh; npx electron-builder --linux dir --publish never -c.npmRebuild=false -c.electronDist=flatpak-node/cache/electron $ELECTRON_BUILDER_ARCH_ARGS
       # Install the unpacked app
       - cp -a release/linux*unpacked /app/bpmn-desk
       - chmod -R a-s,go+rX,go-w /app/bpmn-desk
@@ -53,7 +53,7 @@ modules:
       - install -Dm644 build/icons/512x512.png /app/share/icons/hicolor/512x512/apps/bpmn-desk.png
     sources:
       - type: git
-        url: https://github.com/Alwan/bpmn-desk.git
+        url: https://github.com/Alwan/BpmnDesk.git
         tag: v1.0.1
         commit: 810ca868dc72ea16c5999b71c3a8be70c35c49b4
         x-checker-data:
