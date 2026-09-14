@@ -45,6 +45,7 @@ npm run dev      # Vite dev server on :5173 + Electron pointed at it
 | `npm run dist`    | Build + package installer for the current platform |
 | `npm run dist:linux` | AppImage + `.deb` (Linux only)                  |
 | `npm run dist:win`   | NSIS installer (must run on Windows)            |
+| `npm run clean`      | Remove generated `dist/` and `release/`         |
 
 ## Packaging desktop builds
 
