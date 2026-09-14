@@ -1,5 +1,7 @@
 # bpmn-desk
 
+![bpmn-desk.png](bpmn-desk.png)
+
 A desktop application that lets you create, open, edit, and save
 `.bpmn` diagram files natively on your desktop. Using Apache KIE BPMN editor https://github.com/apache/incubator-kie-tools
 
