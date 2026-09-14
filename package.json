@@ -1,0 +1,27 @@
+{
+  "name": "bpmn-desk",
+  "version": "1.0.0",
+  "description": "Electron desktop app wrapping the Apache KIE standalone BPMN editor",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "vite build",
+    "start": "npm run build && electron .",
+    "dev": "concurrently -k \"vite --port 5173\" \"wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\""
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^44.0.0",
+    "vite": "^6.2.0",
+    "wait-on": "^8.0.2"
+  },
+  "dependencies": {
+      "@kie-tools/bpmn-editor-standalone": "^10.2.0"
+  },
+  "allowScripts": {
+    "electron@33.4.11": true,
+    "esbuild@0.25.12": true
+  }
+}
