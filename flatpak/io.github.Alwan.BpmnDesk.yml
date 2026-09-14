@@ -1,0 +1,72 @@
+app-id: io.github.Alwan.BpmnDesk
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '25.08'
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node24
+separate-locales: false
+command: bpmn-desk
+rename-icon: bpmn-desk
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --share=network
+  # A file editor needs to open/save .bpmn files anywhere in the user's home
+  - --filesystem=home
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
+  - --env=ELECTRON_OZONE_PLATFORM_HINT=auto
+modules:
+  - name: bpmn-desk
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/node24/bin
+      env:
+        XDG_CACHE_HOME: /run/build/bpmn-desk/flatpak-node/cache
+        npm_config_cache: /run/build/bpmn-desk/flatpak-node/npm-cache
+    build-commands:
+      # Install all npm packages from the vendored offline cache
+      - npm ci --offline
+      # Bundle the renderer with Vite
+      - npm run build
+      # Package the unpacked app with electron-builder (dir target only;
+      # Flatpak handles the final packaging)
+      - . flatpak-node/electron-builder-arch-args.sh; npx electron-builder --linux dir --publish never $ELECTRON_BUILDER_ARCH_ARGS
+      # Install the unpacked app
+      - cp -a release/linux*unpacked /app/bpmn-desk
+      - chmod -R a-s,go+rX,go-w /app/bpmn-desk
+      # Launcher (zypak wrapper for Chromium sandboxing)
+      - install -Dm755 bpmn-desk.sh /app/bin/bpmn-desk
+      # Desktop entry, icons, metainfo
+      - install -Dm644 io.github.Alwan.BpmnDesk.desktop /app/share/applications/io.github.Alwan.BpmnDesk.desktop
+      - install -Dm644 io.github.Alwan.BpmnDesk.metainfo.xml /app/share/metainfo/io.github.Alwan.BpmnDesk.metainfo.xml
+      - install -Dm644 build/icons/16x16.png /app/share/icons/hicolor/16x16/apps/bpmn-desk.png
+      - install -Dm644 build/icons/24x24.png /app/share/icons/hicolor/24x24/apps/bpmn-desk.png
+      - install -Dm644 build/icons/32x32.png /app/share/icons/hicolor/32x32/apps/bpmn-desk.png
+      - install -Dm644 build/icons/48x48.png /app/share/icons/hicolor/48x48/apps/bpmn-desk.png
+      - install -Dm644 build/icons/64x64.png /app/share/icons/hicolor/64x64/apps/bpmn-desk.png
+      - install -Dm644 build/icons/128x128.png /app/share/icons/hicolor/128x128/apps/bpmn-desk.png
+      - install -Dm644 build/icons/256x256.png /app/share/icons/hicolor/256x256/apps/bpmn-desk.png
+      - install -Dm644 build/icons/512x512.png /app/share/icons/hicolor/512x512/apps/bpmn-desk.png
+    sources:
+      - type: git
+        url: https://github.com/Alwan/bpmn-desk.git
+        tag: v1.0.1
+        commit: 810ca868dc72ea16c5999b71c3a8be70c35c49b4
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+      # Vendored npm/electron/esbuild sources with checksums (offline build)
+      - generated-sources.json
+      - type: script
+        dest-filename: bpmn-desk.sh
+        commands:
+          - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+          - exec zypak-wrapper.sh /app/bpmn-desk/bpmn-desk "$@"
+      - type: file
+        path: io.github.Alwan.BpmnDesk.desktop
+      - type: file
+        path: io.github.Alwan.BpmnDesk.metainfo.xml

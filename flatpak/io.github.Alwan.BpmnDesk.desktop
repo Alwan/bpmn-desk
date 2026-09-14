@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=bpmn-desk
+Comment=Create, edit and save BPMN diagrams with the Apache KIE BPMN editor
+Exec=bpmn-desk
+Icon=bpmn-desk
+Terminal=false
+Categories=Development;Office;FlowChart;
+Keywords=bpmn;diagram;process;workflow;modeling;kie;
+MimeType=application/bpmn;

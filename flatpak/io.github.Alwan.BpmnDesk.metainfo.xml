@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.Alwan.BpmnDesk</id>
+  <name>bpmn-desk</name>
+  <summary>Create, edit and save BPMN diagrams</summary>
+  <developer id="io.github.Alwan">
+    <name>Alwan</name>
+  </developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <description>
+    <p>
+      bpmn-desk is a desktop application for creating and editing BPMN
+      (Business Process Model and Notation) diagrams. It embeds the Apache KIE
+      standalone BPMN editor and adds native file open/save dialogs, an
+      unsaved-changes guard, and standard keyboard shortcuts.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Full BPMN 2.0 editing canvas powered by the Apache KIE BPMN editor</li>
+      <li>Open and save .bpmn files with native file dialogs</li>
+      <li>Unsaved-changes indicator and save prompt on close</li>
+      <li>Keyboard shortcuts for New, Open, Save and Save As</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">io.github.Alwan.BpmnDesk.desktop</launchable>
+  <url type="homepage">https://github.com/Alwan/bpmn-desk</url>
+  <url type="bugtracker">https://github.com/Alwan/bpmn-desk/issues</url>
+  <url type="vcs-browser">https://github.com/Alwan/bpmn-desk</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/Alwan/bpmn-desk/v1.0.1/bpmn-desk.png</image>
+      <caption>The BPMN editor with an open diagram</caption>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="1.0.1" date="2026-09-14">
+      <description>
+        <p>Initial Flathub release: Apache KIE BPMN editor in a desktop app with file open/save, dirty-state tracking and application icon.</p>
+      </description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1"/>
+  <provides>
+    <binary>bpmn-desk</binary>
+  </provides>
+</component>

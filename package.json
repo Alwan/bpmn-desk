@@ -28,6 +28,7 @@
       "output": "release"
     },
     "publish": null,
+    "npmRebuild": false,
     "linux": {
       "target": [
         { "target": "AppImage", "arch": ["x64"] },
